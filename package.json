@@ -1,0 +1,35 @@
+{
+  "name": "custom-code-react",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run check-code && vite build",
+    "build:dev": "npm run check-code && vite build --mode development",
+    "check-code": "npm run lint && npm run ts:compile",
+    "dev": "concurrently -n Vite,TS -c grey,green \"vite\" \"npm run ts:watch\"",
+    "format": "prettier --write .",
+    "lint": "eslint",
+    "ts:compile": "tsc",
+    "ts:watch": "npm run ts:compile -- --watch --preserveWatchOutput --pretty"
+  },
+  "dependencies": {
+    "@combeenation/custom-code-sdk": "0.0.1-rc2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@combeenation/eslint-config": "2.0.0",
+    "@combeenation/prettier-config": "2.1.1",
+    "@combeenation/ts-config": "2.0.0",
+    "@combeenation/vite-plugin-custom-code-sync": "0.0.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "concurrently": "10.0.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "6.0.3",
+    "vite": "8.1.5",
+    "vite-plugin-css-injected-by-js": "^5.0.2"
+  }
+}

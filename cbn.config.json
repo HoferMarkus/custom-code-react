@@ -1,0 +1,14 @@
+{
+  "cfgrLinks": {
+    "companies": [
+      {
+        "id": "CBNHOF",
+        "cfgrs": [
+          {
+            "id": "REACTPG"
+          }
+        ]
+      }
+    ]
+  }
+}

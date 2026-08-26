@@ -1,15 +1,8 @@
 import { useValueChanged } from '../hooks/use-value-changed';
-import { Cnt1, Cnt2, Cnt3 } from '../typings/cfgr-defs.generated';
 import { CounterButton } from './counter-button';
-import classNames from 'classnames';
+import { ValueComponent } from '@combeenation/custom-code-sdk';
 
-type CounterComponent = typeof Cnt1 | typeof Cnt2 | typeof Cnt3;
-
-type CounterControlProps = {
-  component: CounterComponent;
-};
-
-export function CounterControl({ component }: CounterControlProps) {
+export const CounterControl = ({ component }: { component: ValueComponent<string, number> }) => {
   const count = useValueChanged(component);
 
   return (
@@ -26,4 +19,4 @@ export function CounterControl({ component }: CounterControlProps) {
       </div>
     </div>
   );
-}
+};

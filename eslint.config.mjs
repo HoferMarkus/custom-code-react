@@ -12,10 +12,5 @@ export default defineConfig([
         ...globals.browser,
       },
     },
-
-    rules: {
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-    },
   },
 ]);

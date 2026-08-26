@@ -11,7 +11,7 @@ declare global {
  * Perform initialisation by registering some events after the configurator is ready (controls created, rendered,
  * product plan has already been loaded etc.)
  */
-async function initCfgr() {
+async function initCfgr(): Promise<void> {
   console.warn('> Custom Code Loaded');
 
   renderReactRoot();

@@ -1,15 +1,14 @@
-import { CounterControl } from './components/counter-control';
-import { Cnt1, Cnt2, Cnt3, ReactRoot_cc } from './typings/cfgr-defs.generated';
+import { App } from './components/app';
+import { ReactRoot_cc } from './typings/cfgr-defs.generated';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 export function renderReactRoot() {
   ReactRoot_cc.render(element => {
     createRoot(element).render(
-      <div className="flex gap-4 p-6">
-        <CounterControl component={Cnt1} />
-        <CounterControl component={Cnt2} />
-        <CounterControl component={Cnt3} />
-      </div>
+      <StrictMode>
+        <App />
+      </StrictMode>
     );
   });
 }

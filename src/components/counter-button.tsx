@@ -1,4 +1,17 @@
+import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import type { ReactNode } from 'react';
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  'minWidth': 0,
+  'width': 32,
+  'height': 32,
+  'border': '1px solid #ccc',
+
+  '&:hover': {
+    boxShadow: theme.shadows[2],
+  },
+}));
 
 type CounterButtonProps = {
   ariaLabel: string;
@@ -8,13 +21,8 @@ type CounterButtonProps = {
 
 export function CounterButton({ ariaLabel, children, onClick }: CounterButtonProps) {
   return (
-    <button
-      aria-label={ariaLabel}
-      className="cursor-pointer rounded border border-sky-300 bg-sky-100 px-2 py-1 text-sky-950 hover:bg-sky-200"
-      onClick={onClick}
-      type="button"
-    >
+    <StyledButton aria-label={ariaLabel} onClick={onClick} type="button">
       {children}
-    </button>
+    </StyledButton>
   );
 }

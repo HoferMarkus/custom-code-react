@@ -6,7 +6,7 @@ export const CounterControl = ({ component }: { component: ValueComponent<string
   const count = useValueChanged(component);
 
   return (
-    <div className={'flex flex-col items-center gap-4 rounded-xl border border-amber-500 bg-amber-50 p-4'}>
+    <div className={'flex flex-col items-center gap-4 rounded-xl border border-amber-500 bg-amber-100 p-4'}>
       <span className="text-2xl">{component.name}</span>
       <div className="flex items-center gap-2">
         <CounterButton ariaLabel="Decrement counter" onClick={() => component.setInput(count - 1)}>

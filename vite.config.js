@@ -30,9 +30,7 @@ export default ({ mode }) => {
       sourcemap: false,
     },
     server: {
-      // The default `true` causes some unwanted side effects and we're not using HMR anyhow ATM.
-      // More details: https://combeenation.youtrack.cloud/issue/CB-9193
-      hmr: false,
+      hmr: true,
       cors: true,
     },
   });

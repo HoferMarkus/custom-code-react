@@ -1,4 +1,5 @@
 import { useValueChanged } from '../hooks/use-value-changed';
+import { MinusIcon, PlusIcon } from '../icons';
 import { CounterButton } from './counter-button';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 
@@ -10,11 +11,11 @@ export const CounterControl = ({ component }: { component: ValueComponent<string
       <span className="text-primary-font-color text-x-large text-center">{component.name}</span>
       <div className="flex items-center justify-between gap-2">
         <CounterButton ariaLabel="Decrement counter" onClick={() => component.setInput(count - 1)}>
-          -
+          <img alt="" aria-hidden="true" src={MinusIcon} />
         </CounterButton>
         <span className="text-primary-font-color text-center">{count}</span>
         <CounterButton ariaLabel="Increment counter" onClick={() => component.setInput(count + 1)}>
-          +
+          <img alt="" aria-hidden="true" src={PlusIcon} />
         </CounterButton>
       </div>
     </div>

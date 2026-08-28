@@ -1,5 +1,5 @@
 import { renderReactRoot } from './react-root';
-import './styles.css';
+import './theme/styles.css';
 
 declare global {
   interface Window {

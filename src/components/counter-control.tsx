@@ -6,13 +6,13 @@ export const CounterControl = ({ component }: { component: ValueComponent<string
   const count = useValueChanged(component);
 
   return (
-    <div className="relative flex flex-col gap-4 rounded-xl border border-amber-500 bg-amber-100 p-4">
-      <span className="text-center text-2xl">{component.name}</span>
+    <div className="bg-primary-color border-secondary-color relative flex flex-col gap-4 rounded-xl border p-4">
+      <span className="text-primary-font-color text-x-large text-center">{component.name}</span>
       <div className="flex items-center justify-between gap-2">
         <CounterButton ariaLabel="Decrement counter" onClick={() => component.setInput(count - 1)}>
           -
         </CounterButton>
-        <span className="text-center">{count}</span>
+        <span className="text-primary-font-color text-center">{count}</span>
         <CounterButton ariaLabel="Increment counter" onClick={() => component.setInput(count + 1)}>
           +
         </CounterButton>

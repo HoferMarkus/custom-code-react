@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+:root {
+  --font-small: 16px;
+  --font-normal: 18px;
+  --font-medium: 20px;
+  --font-large: 24px;
+  --font-x-large: 28px;
+  --primary-color: #ffd119;
+  --primary-font-color: #191d1f;
+  --secondary-color: #677752;
+  --secondary-font-color: #636d70;
+  --white-color: #ffffff;
+  --white-hover-color: #f8f8f8;
+  --white-active-color: #ebebeb;
+  --light-grey-color: #f5f5f5;
+  --light-green-color: #eef4ed;
+  --light-red-color: #e07f76;
+  --medium-grey-color: #636d70;
+  --border-color: #eeeeee;
+  --disabled-grey-color: #98a2b3;
+}
+
+@theme inline {
+  --text-small: var(--font-small);
+  --text-normal: var(--font-normal);
+  --text-medium: var(--font-medium);
+  --text-large: var(--font-large);
+  --text-x-large: var(--font-x-large);
+  --color-primary-color: var(--primary-color);
+  --color-primary-font-color: var(--primary-font-color);
+  --color-secondary-color: var(--secondary-color);
+  --color-secondary-font-color: var(--secondary-font-color);
+  --color-white-color: var(--white-color);
+  --color-white-hover-color: var(--white-hover-color);
+  --color-white-active-color: var(--white-active-color);
+  --color-light-grey-color: var(--light-grey-color);
+  --color-light-green-color: var(--light-green-color);
+  --color-light-red-color: var(--light-red-color);
+  --color-medium-grey-color: var(--medium-grey-color);
+  --color-border-color: var(--border-color);
+  --color-disabled-grey-color: var(--disabled-grey-color);
+}

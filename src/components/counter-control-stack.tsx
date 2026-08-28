@@ -9,7 +9,10 @@ export const CounterControlStack = ({ component }: { component: ValueComponent<s
 
   return (
     <div className="flex w-36 flex-col gap-4">
-      <FormControlLabel control={<Checkbox checked={render} onChange={() => setRender(!render)} />} label="Show" />
+      <FormControlLabel
+        control={<Checkbox checked={render} onChange={() => setRender(!render)} />}
+        label={<span className="text-primary-font-color">Show</span>}
+      />
       {render && <CounterControl component={component} />}
     </div>
   );

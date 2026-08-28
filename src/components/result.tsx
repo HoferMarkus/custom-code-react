@@ -7,5 +7,5 @@ export const Result = () => {
   const cnt3 = useValueChanged(Cnt3);
   const total = cnt1 + cnt2 + cnt3;
 
-  return <span className="mb-4 self-end text-3xl">{`= ${total}`}</span>;
+  return <span className="text-x-large text-primary-font-color mb-4 self-end">{`= ${total}`}</span>;
 };

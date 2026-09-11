@@ -11,9 +11,7 @@ export function useValueChanged(component: ValueComponent<string, number>): numb
     }, true);
 
     return (): void => {
-      // TODO: Unsubscribe callback is missing, leading to problems => API not available ATM
-      // - double execution due to strict mode
-      // - accumulating callbacks when component is unmounted and mounted again
+      // NOTE: only works with local `CbnSdk` in `spike/unsubscribe-cmp-listener branch`
       async function unsubscribeValueChanged(): Promise<void> {
         (await valueChangedProm).unsubscribe();
       }

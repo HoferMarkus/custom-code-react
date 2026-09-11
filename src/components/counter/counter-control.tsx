@@ -1,5 +1,5 @@
-import { useValueChanged } from '../hooks/use-value-changed';
-import { MinusIcon, PlusIcon } from '../icons';
+import { useValueChanged } from '../../hooks/use-value-changed';
+import { MinusIcon, PlusIcon } from '../../icons';
 import { CounterButton } from './counter-button';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 

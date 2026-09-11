@@ -1,4 +1,4 @@
-import { useValueChanged } from '../hooks/use-value-changed';
+import { useValueChanged } from '../../hooks/use-value-changed';
 import { CounterControl } from './counter-control';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 import { Checkbox, FormControlLabel } from '@mui/material';

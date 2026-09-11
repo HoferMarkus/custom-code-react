@@ -93,20 +93,12 @@ export type QuoteMarkup = {
   actionRules?: QuoteItemActionRuleSet;
 };
 export type QuoteLineItemCustomFields = {
-  ScopeOfDelivery?: string[];
-  WarrantyTimeInMonth?: number;
-  AdditionalNotes?: string;
-  CustomsTariffNumber?: string;
-  CountryOfOriginCode?: string;
-  ParentId?: string;
+  image2?: boolean;
+  image?: number;
 };
 export type QuoteLineItemRuleSetCustomFields = {
-  ScopeOfDelivery?: QuoteRule;
-  WarrantyTimeInMonth?: QuoteRule;
-  AdditionalNotes?: QuoteRule;
-  CustomsTariffNumber?: QuoteRule;
-  CountryOfOriginCode?: QuoteRule;
-  ParentId?: QuoteRule;
+  image2?: QuoteRule;
+  image?: QuoteRule;
 };
 export type QuoteLineItem = {
   type?: string;
@@ -211,36 +203,12 @@ export type QuoteTemplate = {
   items?: QuoteItem[];
 };
 export type QuoteCustomFields = {
-  ShippingMethod?: string;
-  PaymentTerms?: string;
-  ContactLanguage?: string;
-  PackingInstructions?: string;
-  Notes?: string;
-  InquiryDate?: string;
-  ContactPersonTel?: string;
-  ContactPerson?: string;
-  ContactPersonMail?: string;
-  OpportunityNumber?: string;
-  ExpectedDeliveryDate?: number;
-  ContactNo?: string;
-  CustomerNo?: string;
-  BCEntryNo?: string;
+  Lieferbedingungen?: string;
+  Angebot?: string;
 };
 export type QuoteRuleSetCustomFields = {
-  ShippingMethod?: QuoteRule;
-  PaymentTerms?: QuoteRule;
-  ContactLanguage?: QuoteRule;
-  PackingInstructions?: QuoteRule;
-  Notes?: QuoteRule;
-  InquiryDate?: QuoteRule;
-  ContactPersonTel?: QuoteRule;
-  ContactPerson?: QuoteRule;
-  ContactPersonMail?: QuoteRule;
-  OpportunityNumber?: QuoteRule;
-  ExpectedDeliveryDate?: QuoteRule;
-  ContactNo?: QuoteRule;
-  CustomerNo?: QuoteRule;
-  BCEntryNo?: QuoteRule;
+  Lieferbedingungen?: QuoteRule;
+  Angebot?: QuoteRule;
 };
 export type Quote = {
   quoteHubName: string;
@@ -269,18 +237,21 @@ export type Quote = {
   fields?: QuoteCustomFields;
   fieldRules?: QuoteRuleSetCustomFields;
 };
+export type TenantCustomFields = {
+  Discount?: string;
+  F6?: number;
+};
 export type Tenant = {
   Name: string;
   DisplayName: string;
   Logo: string;
+  Fields?: TenantCustomFields;
 };
 export type UserCustomFields = {
-  Field1?: number;
-  NumArr?: number[];
-  Entity?: string;
-  Position?: string;
-  SignatureUrl?: string;
-  Code?: string;
+  F4?: string;
+  Discount?: number;
+  DiscountString?: string;
+  F5?: number[];
 };
 export type User = {
   Id: string;
@@ -314,8 +285,8 @@ const $Type_QuoteDiscountRuleSet: z.ZodType<QuoteDiscountRuleSet> = z.object({na
 const $Type_QuoteDiscount: z.ZodType<QuoteDiscount> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), calculationMethod: $Type_PriceCalculationMethod.optional(), rules: $Type_QuoteDiscountRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteMarkupRuleSet: z.ZodType<QuoteMarkupRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteMarkup: z.ZodType<QuoteMarkup> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), rules: $Type_QuoteMarkupRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteLineItemCustomFields: z.ZodType<QuoteLineItemCustomFields> = z.object({ScopeOfDelivery: z.string().array().optional(), WarrantyTimeInMonth: z.number().optional(), AdditionalNotes: z.string().optional(), CustomsTariffNumber: z.string().optional(), CountryOfOriginCode: z.string().optional(), ParentId: z.string().optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteLineItemRuleSetCustomFields: z.ZodType<QuoteLineItemRuleSetCustomFields> = z.object({ScopeOfDelivery: $Type_QuoteRule.optional(), WarrantyTimeInMonth: $Type_QuoteRule.optional(), AdditionalNotes: $Type_QuoteRule.optional(), CustomsTariffNumber: $Type_QuoteRule.optional(), CountryOfOriginCode: $Type_QuoteRule.optional(), ParentId: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteLineItemCustomFields: z.ZodType<QuoteLineItemCustomFields> = z.object({image2: z.boolean().optional(), image: z.number().optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteLineItemRuleSetCustomFields: z.ZodType<QuoteLineItemRuleSetCustomFields> = z.object({image2: $Type_QuoteRule.optional(), image: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteLineItem: z.ZodType<QuoteLineItem> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), sku: z.string().optional(), description: z.string().optional(), quantity: z.number(), unit: z.string(), priceNet: z.number(), variableCostNet: z.number().optional(), tax: z.number(), discount: $Type_QuoteLineItemDiscount.optional(), contributionMarginRatioThreshold: z.number().optional(), isOptional: z.boolean().optional(), imageUrl: z.string().optional(), rules: $Type_QuoteLineItemRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional(), fields: $Type_QuoteLineItemCustomFields.optional(), fieldRules: $Type_QuoteLineItemRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteItem: z.ZodType<QuoteItem> = z.union([$Type_QuoteLineItem, $Type_QuoteSection, $Type_QuoteDiscount, $Type_QuoteMarkup]);
 const $Type_QuoteAdjustmentRuleSet: z.ZodType<QuoteAdjustmentRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), type: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
@@ -332,11 +303,12 @@ const $Type_QuoteRuleSet: z.ZodType<QuoteRuleSet> = z.object({subject: $Type_Quo
 const $Type_QuoteActionRuleSet: z.ZodType<QuoteActionRuleSet> = z.object({addItem: $Type_QuoteRule.optional(), addTotalDiscount: $Type_QuoteRule.optional(), addTotalMarkup: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteTemplate: z.ZodType<QuoteTemplate> = z.object({items: $Type_001.optional()}).describe('{ "elementity" : true }');
 const $Type_003 = $Type_QuoteTemplate.array();
-const $Type_QuoteCustomFields: z.ZodType<QuoteCustomFields> = z.object({ShippingMethod: z.string().optional(), PaymentTerms: z.string().optional(), ContactLanguage: z.string().optional(), PackingInstructions: z.string().optional(), Notes: z.string().optional(), InquiryDate: z.string().optional(), ContactPersonTel: z.string().optional(), ContactPerson: z.string().optional(), ContactPersonMail: z.string().optional(), OpportunityNumber: z.string().optional(), ExpectedDeliveryDate: z.number().optional(), ContactNo: z.string().optional(), CustomerNo: z.string().optional(), BCEntryNo: z.string().optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteRuleSetCustomFields: z.ZodType<QuoteRuleSetCustomFields> = z.object({ShippingMethod: $Type_QuoteRule.optional(), PaymentTerms: $Type_QuoteRule.optional(), ContactLanguage: $Type_QuoteRule.optional(), PackingInstructions: $Type_QuoteRule.optional(), Notes: $Type_QuoteRule.optional(), InquiryDate: $Type_QuoteRule.optional(), ContactPersonTel: $Type_QuoteRule.optional(), ContactPerson: $Type_QuoteRule.optional(), ContactPersonMail: $Type_QuoteRule.optional(), OpportunityNumber: $Type_QuoteRule.optional(), ExpectedDeliveryDate: $Type_QuoteRule.optional(), ContactNo: $Type_QuoteRule.optional(), CustomerNo: $Type_QuoteRule.optional(), BCEntryNo: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteCustomFields: z.ZodType<QuoteCustomFields> = z.object({Lieferbedingungen: z.string().optional(), Angebot: z.string().optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteRuleSetCustomFields: z.ZodType<QuoteRuleSetCustomFields> = z.object({Lieferbedingungen: $Type_QuoteRule.optional(), Angebot: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_Quote: z.ZodType<Quote> = z.object({quoteHubName: z.string(), assetBundleName: z.string().optional(), widgetAssetPath: z.string().optional(), pdfAssetPath: z.string().optional(), assignee: z.string().array(), subject: z.string(), projectId: z.string(), currency: $Type_Currency, taxRule: $Type_QuoteTaxRule.optional(), globalTax: z.number().optional(), paymentDueDays: z.number().optional(), offerValidityDays: z.number().optional(), notes: z.string().optional(), contributionMarginRatioThreshold: z.number().optional(), customer: $Type_QuoteCustomer, company: $Type_QuoteCompany, shipping: $Type_QuoteCustomer.optional(), items: $Type_001, discounts: $Type_002.optional(), markups: $Type_002.optional(), rules: $Type_QuoteRuleSet.optional(), actionRules: $Type_QuoteActionRuleSet.optional(), templates: $Type_003.optional(), fields: $Type_QuoteCustomFields.optional(), fieldRules: $Type_QuoteRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
-const $Type_Tenant: z.ZodType<Tenant> = z.object({Name: z.string(), DisplayName: z.string(), Logo: z.string()}).describe('{ "elementity" : true }');
-const $Type_UserCustomFields: z.ZodType<UserCustomFields> = z.object({Field1: z.number().optional(), NumArr: z.number().array().optional(), Entity: z.string().optional(), Position: z.string().optional(), SignatureUrl: z.string().optional(), Code: z.string().optional()}).describe('{ "elementity" : true }');
+const $Type_TenantCustomFields: z.ZodType<TenantCustomFields> = z.object({Discount: z.string().optional(), F6: z.number().optional()}).describe('{ "elementity" : true }');
+const $Type_Tenant: z.ZodType<Tenant> = z.object({Name: z.string(), DisplayName: z.string(), Logo: z.string(), Fields: $Type_TenantCustomFields.optional()}).describe('{ "elementity" : true }');
+const $Type_UserCustomFields: z.ZodType<UserCustomFields> = z.object({F4: z.string().optional(), Discount: z.number().optional(), DiscountString: z.string().optional(), F5: z.number().array().optional()}).describe('{ "elementity" : true }');
 const $Type_User: z.ZodType<User> = z.object({Id: z.string(), FirstName: z.string(), LastName: z.string(), Mail: z.string(), Distributor: z.string(), Avatar: z.string(), Fields: $Type_UserCustomFields.optional()}).describe('{ "elementity" : true }');
 
 /**

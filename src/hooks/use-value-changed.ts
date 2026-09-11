@@ -5,7 +5,7 @@ export function useValueChanged(component: ValueComponent<string, number>): numb
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    component.onValueChanged(nextValue => {
+    const valueChangedProm = component.onValueChanged(nextValue => {
       console.log(component, nextValue);
       setValue(nextValue ?? 0);
     }, true);
@@ -14,7 +14,10 @@ export function useValueChanged(component: ValueComponent<string, number>): numb
       // TODO: Unsubscribe callback is missing, leading to problems => API not available ATM
       // - double execution due to strict mode
       // - accumulating callbacks when component is unmounted and mounted again
-      // component.offValueChanged();
+      async function unsubscribeValueChanged(): Promise<void> {
+        (await valueChangedProm).unsubscribe();
+      }
+      unsubscribeValueChanged();
     };
   }, [component]);
 

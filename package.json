@@ -14,7 +14,7 @@
     "ts:watch": "npm run ts:compile -- --watch --preserveWatchOutput --pretty"
   },
   "dependencies": {
-    "@combeenation/custom-code-sdk": "0.0.1-rc2",
+    "@combeenation/custom-code-sdk": "file:combeenation-custom-code-sdk-0.0.1-rc3-unsubscribe-cmp-listener.tgz",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
     "@mui/material": "^9.3.1",

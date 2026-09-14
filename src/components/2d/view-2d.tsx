@@ -10,10 +10,12 @@ export function View2D(): JSX.Element {
   ];
 
   return (
-    <div className="flex gap-4">
-      {stacks.map(({ component, colorClassName }) => (
-        <RectangleStack key={component.name} component={component} colorClassName={colorClassName} />
-      ))}
+    <div className="min-h-0 flex-1 overflow-auto">
+      <div className="flex min-w-max gap-4">
+        {stacks.map(({ component, colorClassName }) => (
+          <RectangleStack key={component.name} component={component} colorClassName={colorClassName} />
+        ))}
+      </div>
     </div>
   );
 }

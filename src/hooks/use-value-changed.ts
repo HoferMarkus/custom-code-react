@@ -13,7 +13,7 @@ export function useValueChanged(component: ValueComponent<string, number>): numb
     return (): void => {
       // NOTE: only works with local `CbnSdk` in `spike/unsubscribe-cmp-listener branch`
       async function unsubscribeValueChanged(): Promise<void> {
-        (await valueChangedProm).unsubscribe();
+        (await valueChangedProm)?.unsubscribe?.();
       }
       unsubscribeValueChanged();
     };

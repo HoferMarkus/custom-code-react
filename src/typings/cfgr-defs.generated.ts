@@ -7,21 +7,21 @@ import { z } from 'zod';
 */
 export type QuoteRule = QuoteLockRule | QuoteMinMaxRule | QuoteAllowedTextsRule | QuoteAllowedNumbersRule;
 export type QuoteLockRule = {
-  type?: string;
+  type: 'Lock';
   locked?: boolean;
 };
 export type QuoteMinMaxRule = {
-  type?: string;
+  type: 'MinMax';
   min: number;
   max: number;
 };
 export type QuoteAllowedTextsRule = {
-  type?: string;
+  type: 'AllowedTexts';
   displayNames?: string[];
   texts: string[];
 };
 export type QuoteAllowedNumbersRule = {
-  type?: string;
+  type: 'AllowedNumbers';
   displayNames?: string[];
   numbers: number[];
 };
@@ -52,46 +52,6 @@ export type QuoteLineItemRuleSet = {
 export type QuoteItemActionRuleSet = {
   delete?: QuoteRule;
 };
-export type QuoteSectionRuleSet = {
-  name?: QuoteRule;
-};
-export type QuoteSection = {
-  type?: string;
-  id?: string;
-  name: string;
-  rules?: QuoteSectionRuleSet;
-};
-export type PriceCalculationMethod = 'Additive' | 'Cumulative';
-export type QuoteDiscountRuleSet = {
-  name?: QuoteRule;
-  value?: QuoteRule;
-  valueType?: QuoteRule;
-  calculationMethod?: QuoteRule;
-};
-export type QuoteDiscount = {
-  type?: string;
-  id?: string;
-  name: string;
-  value: number;
-  valueType?: PriceAdjustmentType;
-  calculationMethod?: PriceCalculationMethod;
-  rules?: QuoteDiscountRuleSet;
-  actionRules?: QuoteItemActionRuleSet;
-};
-export type QuoteMarkupRuleSet = {
-  name?: QuoteRule;
-  value?: QuoteRule;
-  valueType?: QuoteRule;
-};
-export type QuoteMarkup = {
-  type?: string;
-  id?: string;
-  name: string;
-  value: number;
-  valueType?: PriceAdjustmentType;
-  rules?: QuoteMarkupRuleSet;
-  actionRules?: QuoteItemActionRuleSet;
-};
 export type QuoteLineItemCustomFields = {
   image2?: boolean;
   image?: number;
@@ -101,7 +61,7 @@ export type QuoteLineItemRuleSetCustomFields = {
   image?: QuoteRule;
 };
 export type QuoteLineItem = {
-  type?: string;
+  type: 'Item';
   id?: string;
   name: string;
   sku?: string;
@@ -119,6 +79,46 @@ export type QuoteLineItem = {
   actionRules?: QuoteItemActionRuleSet;
   fields?: QuoteLineItemCustomFields;
   fieldRules?: QuoteLineItemRuleSetCustomFields;
+};
+export type QuoteSectionRuleSet = {
+  name?: QuoteRule;
+};
+export type QuoteSection = {
+  type: 'Section';
+  id?: string;
+  name: string;
+  rules?: QuoteSectionRuleSet;
+};
+export type PriceCalculationMethod = 'Additive' | 'Cumulative';
+export type QuoteDiscountRuleSet = {
+  name?: QuoteRule;
+  value?: QuoteRule;
+  valueType?: QuoteRule;
+  calculationMethod?: QuoteRule;
+};
+export type QuoteDiscount = {
+  type: 'Discount';
+  id?: string;
+  name: string;
+  value: number;
+  valueType?: PriceAdjustmentType;
+  calculationMethod?: PriceCalculationMethod;
+  rules?: QuoteDiscountRuleSet;
+  actionRules?: QuoteItemActionRuleSet;
+};
+export type QuoteMarkupRuleSet = {
+  name?: QuoteRule;
+  value?: QuoteRule;
+  valueType?: QuoteRule;
+};
+export type QuoteMarkup = {
+  type: 'Markup';
+  id?: string;
+  name: string;
+  value: number;
+  valueType?: PriceAdjustmentType;
+  rules?: QuoteMarkupRuleSet;
+  actionRules?: QuoteItemActionRuleSet;
 };
 export type QuoteAdjustmentRuleSet = {
   name?: QuoteRule;
@@ -267,10 +267,10 @@ export type User = {
 * ZOD OBJECTS
 */
 const $Type_QuoteRuleBase = z.object({}).describe('{ "elementity" : true }');
-const $Type_QuoteLockRule: z.ZodType<QuoteLockRule> = $Type_QuoteRuleBase.extend({type: z.string().optional(), locked: z.boolean().optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteMinMaxRule: z.ZodType<QuoteMinMaxRule> = $Type_QuoteRuleBase.extend({type: z.string().optional(), min: z.number(), max: z.number()}).describe('{ "elementity" : true }');
-const $Type_QuoteAllowedTextsRule: z.ZodType<QuoteAllowedTextsRule> = $Type_QuoteRuleBase.extend({type: z.string().optional(), displayNames: z.string().array().optional(), texts: z.string().array()}).describe('{ "elementity" : true }');
-const $Type_QuoteAllowedNumbersRule: z.ZodType<QuoteAllowedNumbersRule> = $Type_QuoteRuleBase.extend({type: z.string().optional(), displayNames: z.string().array().optional(), numbers: z.number().array()}).describe('{ "elementity" : true }');
+const $Type_QuoteLockRule: z.ZodType<QuoteLockRule> = $Type_QuoteRuleBase.extend({type: z.literal('Lock'), locked: z.boolean().optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteMinMaxRule: z.ZodType<QuoteMinMaxRule> = $Type_QuoteRuleBase.extend({type: z.literal('MinMax'), min: z.number(), max: z.number()}).describe('{ "elementity" : true }');
+const $Type_QuoteAllowedTextsRule: z.ZodType<QuoteAllowedTextsRule> = $Type_QuoteRuleBase.extend({type: z.literal('AllowedTexts'), displayNames: z.string().array().optional(), texts: z.string().array()}).describe('{ "elementity" : true }');
+const $Type_QuoteAllowedNumbersRule: z.ZodType<QuoteAllowedNumbersRule> = $Type_QuoteRuleBase.extend({type: z.literal('AllowedNumbers'), displayNames: z.string().array().optional(), numbers: z.number().array()}).describe('{ "elementity" : true }');
 const $Type_QuoteRule: z.ZodType<QuoteRule> = z.union([$Type_QuoteLockRule, $Type_QuoteMinMaxRule, $Type_QuoteAllowedTextsRule, $Type_QuoteAllowedNumbersRule]);
 const $Type_QuoteItemBase = z.object({}).describe('{ "elementity" : true }');
 const $Type_PriceAdjustmentType: z.ZodType<PriceAdjustmentType> = z.enum(['Percent', 'Absolute']);
@@ -278,16 +278,16 @@ const $Type_QuoteLineItemDiscount: z.ZodType<QuoteLineItemDiscount> = z.object({
 const $Type_QuoteLineItemDiscountRuleSet: z.ZodType<QuoteLineItemDiscountRuleSet> = z.object({value: $Type_QuoteRule.optional(), type: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteLineItemRuleSet: z.ZodType<QuoteLineItemRuleSet> = z.object({name: $Type_QuoteRule.optional(), sku: $Type_QuoteRule.optional(), description: $Type_QuoteRule.optional(), quantity: $Type_QuoteRule.optional(), unit: $Type_QuoteRule.optional(), priceNet: $Type_QuoteRule.optional(), tax: $Type_QuoteRule.optional(), discount: $Type_QuoteLineItemDiscountRuleSet.optional(), isOptional: $Type_QuoteRule.optional(), contributionMarginRatio: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteItemActionRuleSet: z.ZodType<QuoteItemActionRuleSet> = z.object({delete: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteSectionRuleSet: z.ZodType<QuoteSectionRuleSet> = z.object({name: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteSection: z.ZodType<QuoteSection> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), rules: $Type_QuoteSectionRuleSet.optional()}).describe('{ "elementity" : true }');
-const $Type_PriceCalculationMethod: z.ZodType<PriceCalculationMethod> = z.enum(['Additive', 'Cumulative']);
-const $Type_QuoteDiscountRuleSet: z.ZodType<QuoteDiscountRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional(), calculationMethod: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteDiscount: z.ZodType<QuoteDiscount> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), calculationMethod: $Type_PriceCalculationMethod.optional(), rules: $Type_QuoteDiscountRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteMarkupRuleSet: z.ZodType<QuoteMarkupRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteMarkup: z.ZodType<QuoteMarkup> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), rules: $Type_QuoteMarkupRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteLineItemCustomFields: z.ZodType<QuoteLineItemCustomFields> = z.object({image2: z.boolean().optional(), image: z.number().optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteLineItemRuleSetCustomFields: z.ZodType<QuoteLineItemRuleSetCustomFields> = z.object({image2: $Type_QuoteRule.optional(), image: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_QuoteLineItem: z.ZodType<QuoteLineItem> = $Type_QuoteItemBase.extend({type: z.string().optional(), id: z.string().optional(), name: z.string(), sku: z.string().optional(), description: z.string().optional(), quantity: z.number(), unit: z.string(), priceNet: z.number(), variableCostNet: z.number().optional(), tax: z.number(), discount: $Type_QuoteLineItemDiscount.optional(), contributionMarginRatioThreshold: z.number().optional(), isOptional: z.boolean().optional(), imageUrl: z.string().optional(), rules: $Type_QuoteLineItemRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional(), fields: $Type_QuoteLineItemCustomFields.optional(), fieldRules: $Type_QuoteLineItemRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteLineItem: z.ZodType<QuoteLineItem> = $Type_QuoteItemBase.extend({type: z.literal('Item'), id: z.string().optional(), name: z.string(), sku: z.string().optional(), description: z.string().optional(), quantity: z.number(), unit: z.string(), priceNet: z.number(), variableCostNet: z.number().optional(), tax: z.number(), discount: $Type_QuoteLineItemDiscount.optional(), contributionMarginRatioThreshold: z.number().optional(), isOptional: z.boolean().optional(), imageUrl: z.string().optional(), rules: $Type_QuoteLineItemRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional(), fields: $Type_QuoteLineItemCustomFields.optional(), fieldRules: $Type_QuoteLineItemRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteSectionRuleSet: z.ZodType<QuoteSectionRuleSet> = z.object({name: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteSection: z.ZodType<QuoteSection> = $Type_QuoteItemBase.extend({type: z.literal('Section'), id: z.string().optional(), name: z.string(), rules: $Type_QuoteSectionRuleSet.optional()}).describe('{ "elementity" : true }');
+const $Type_PriceCalculationMethod: z.ZodType<PriceCalculationMethod> = z.enum(['Additive', 'Cumulative']);
+const $Type_QuoteDiscountRuleSet: z.ZodType<QuoteDiscountRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional(), calculationMethod: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteDiscount: z.ZodType<QuoteDiscount> = $Type_QuoteItemBase.extend({type: z.literal('Discount'), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), calculationMethod: $Type_PriceCalculationMethod.optional(), rules: $Type_QuoteDiscountRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteMarkupRuleSet: z.ZodType<QuoteMarkupRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), valueType: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
+const $Type_QuoteMarkup: z.ZodType<QuoteMarkup> = $Type_QuoteItemBase.extend({type: z.literal('Markup'), id: z.string().optional(), name: z.string(), value: z.number(), valueType: $Type_PriceAdjustmentType.optional(), rules: $Type_QuoteMarkupRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteItem: z.ZodType<QuoteItem> = z.union([$Type_QuoteLineItem, $Type_QuoteSection, $Type_QuoteDiscount, $Type_QuoteMarkup]);
 const $Type_QuoteAdjustmentRuleSet: z.ZodType<QuoteAdjustmentRuleSet> = z.object({name: $Type_QuoteRule.optional(), value: $Type_QuoteRule.optional(), type: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteAdjustment: z.ZodType<QuoteAdjustment> = z.object({id: z.string().optional(), name: z.string(), value: z.number(), type: $Type_PriceAdjustmentType.optional(), rules: $Type_QuoteAdjustmentRuleSet.optional(), actionRules: $Type_QuoteItemActionRuleSet.optional()}).describe('{ "elementity" : true }');

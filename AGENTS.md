@@ -7,7 +7,7 @@ Help developers make correct, maintainable changes that fit this project's requi
 ## Documentation layout
 
 - **Platform description (read-only):** `.ai/system.md` and `.ai/coding-guidelines.md`. They are identical in every project and describe the platform (the Combeenation SDK, the 3D viewer, the entry point and approved libraries) and its coding rules, including the ESLint rules. Never edit, adapt or extend them.
-- **Project description (editable):** `.ai/project.md`. It covers the product and the coding specifics of this project, such as the React stack, conventions and commands. It is the only file in `.ai/` the agent may adjust.
+- **Project description (editable):** `.ai/project.md`. It covers the product and the coding specifics of this project, such as the React stack, conventions and commands. It is the only file in `.ai/` the agent may adjust. To sync it with the code base, use the `update-project-description` skill.
 - If the two disagree about platform behaviour, the platform description wins. Flag the conflict instead of resolving it silently.
 
 ## Before making changes
@@ -39,6 +39,7 @@ Help developers make correct, maintainable changes that fit this project's requi
 ## Documentation and decisions
 
 - Update relevant documentation when behavior, configuration, setup, or architectural decisions change.
+- After each major feature change, run the `update-project-description` skill so `.ai/project.md` stays in sync with the code.
 - Record important architecture decisions in the project's established ADR format, if one exists.
 - Keep proposals and assumptions separate from accepted decisions.
 - Do not modify `.ai/system.md` or `.ai/coding-guidelines.md`, and do not claim an undocumented platform capability is supported without evidence.

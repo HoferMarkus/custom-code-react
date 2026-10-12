@@ -3,7 +3,7 @@ import { Cnt1, Cnt2, Cnt3 } from '../../typings/cfgr-defs.generated';
 import { CUBE_HEIGHT, CUBE_WIDTH, getCubeCenter } from './cube-layout';
 import { CubeAnchor, useCubeAnchors } from './use-cube-anchors';
 import { Color3, MeshBuilder, PBRMaterial, Viewer } from '@combeenation/3d-viewer';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 const _CUBE_COLORS = ['#ffd119', '#677752', '#e07f76'];
 // Strict pattern so html anchor meshes (`counter-cube-anchor-...`) are never matched.
@@ -25,7 +25,8 @@ function _getOrCreateMaterial(viewer: Viewer, stackIndex: number): PBRMaterial {
   return material;
 }
 
-function _drawCubeStacks(viewer: Viewer, cubeCounts: number[]): void {
+/** Returns `true` if cubes were added or removed. */
+function _drawCubeStacks(viewer: Viewer, cubeCounts: number[]): boolean {
   const wantedNames = new Set<string>();
   let changed = false;
 
@@ -59,9 +60,7 @@ function _drawCubeStacks(viewer: Viewer, cubeCounts: number[]): void {
       changed = true;
     });
 
-  if (changed) {
-    viewer.cameraManager.autofocusActiveCamera();
-  }
+  return changed;
 }
 
 export function useDrawCubeStacks(viewer: Viewer | null): CubeAnchor[] {
@@ -73,9 +72,19 @@ export function useDrawCubeStacks(viewer: Viewer | null): CubeAnchor[] {
     [cnt1CubeCount, cnt2CubeCount, cnt3CubeCount]
   );
 
+  const focusedViewerRef = useRef<Viewer | null>(null);
+
   useEffect(() => {
-    if (viewer) {
-      _drawCubeStacks(viewer, cubeCounts);
+    if (!viewer) {
+      return;
+    }
+
+    const changed = _drawCubeStacks(viewer, cubeCounts);
+
+    // Focus once per viewer so later stack changes keep the user's camera position.
+    if (changed && focusedViewerRef.current !== viewer) {
+      focusedViewerRef.current = viewer;
+      viewer.cameraManager.autofocusActiveCamera();
     }
   }, [viewer, cubeCounts]);
 

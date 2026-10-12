@@ -43,9 +43,17 @@ There are no tests and none are planned.
 
 - `src/index.ts` calls `renderReactRoot()`.
 - `src/components/` holds React components, grouped by feature (`2d/`, `3d/`, `counter/`).
-- `src/hooks/` holds hooks. Configurator values are read with `useCmpValue` (`src/hooks/use-cmp-value.ts`) rather than calling the SDK subscription directly.
+- `src/hooks/` holds shared hooks. Configurator values are read with `useCmpValue` (`src/hooks/use-cmp-value.ts`) rather than calling the SDK subscription directly. Feature-specific hooks sit next to their components (for example in `src/components/3d/`).
 - File names are kebab-case. Components are function components in `.tsx` files.
-- The 3D viewer is created and destroyed in a `useEffect` (`src/components/3d/view-3d.tsx`).
+- The 3D view (`src/components/3d/`) is split by role:
+  - `use-viewer-setup.ts` creates and destroys the viewer.
+  - `use-draw-cube-stacks.ts` draws the cube meshes.
+  - `use-cube-anchors.ts` manages the HTML anchors.
+  - `screenshot-button.tsx` downloads a PNG of the scene from the current camera position via `cameraManager.createScreenshot`.
+  - `center-camera-button.tsx` re-centres the camera on the scene via `cameraManager.autofocusActiveCamera`. The camera is focused automatically only once per viewer, so later counter changes keep the user's view.
+  - `cube-layout.ts` holds the layout maths.
+- Every cube has an HTML anchor on its front face (viewer HTML anchor feature). `view-3d.tsx` renders the content of each anchor with `createPortal`, currently an info icon whose tooltip shows the cube index. This is a demo detail.
+- 3D names are index based: meshes are `counter-cube-<stack>-<cube>` and anchors `counter-cube-anchor-<stack>-<cube>`. Match mesh names with the strict pattern in `use-draw-cube-stacks.ts` so anchors are never mistaken for cubes.
 
 ## Constraints
 

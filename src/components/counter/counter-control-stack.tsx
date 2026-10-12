@@ -1,10 +1,9 @@
-import { useCmpValue } from '../../hooks/use-cmp-value';
 import { CounterControl } from './counter-control';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { useState } from 'react';
+import { type ReactElement, useState } from 'react';
 
-export const CounterControlStack = ({ component }: { component: ValueComponent<string, number> }) => {
+export const CounterControlStack = ({ component }: { component: ValueComponent<string, number> }): ReactElement => {
   const [render, setRender] = useState(true);
 
   return (

@@ -2,8 +2,9 @@ import { useCmpValue } from '../../hooks/use-cmp-value';
 import { MinusIcon, PlusIcon } from '../../icons';
 import { CounterButton } from './counter-button';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
+import type { ReactElement } from 'react';
 
-export const CounterControl = ({ component }: { component: ValueComponent<string, number> }) => {
+export const CounterControl = ({ component }: { component: ValueComponent<string, number> }): ReactElement => {
   const count = useCmpValue(component, 0, 'CounterControl');
 
   return (

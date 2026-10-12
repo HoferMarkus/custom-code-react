@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-export function renderReactRoot() {
+export function renderReactRoot(): void {
   ReactRoot_cc.render(element => {
     createRoot(element).render(
       <StrictMode>

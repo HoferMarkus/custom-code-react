@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   'minWidth': 0,
@@ -22,7 +22,7 @@ type CounterButtonProps = {
   onClick: () => void;
 };
 
-export function CounterButton({ ariaLabel, children, onClick }: CounterButtonProps) {
+export function CounterButton({ ariaLabel, children, onClick }: CounterButtonProps): ReactElement {
   return (
     <StyledButton aria-label={ariaLabel} onClick={onClick} type="button">
       {children}

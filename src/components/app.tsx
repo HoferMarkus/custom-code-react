@@ -3,8 +3,9 @@ import { View2D } from './2d/view-2d';
 import { View3D } from './3d/view-3d';
 import { CounterControlStack } from './counter/counter-control-stack';
 import { Result } from './result';
+import type { ReactElement } from 'react';
 
-export function App() {
+export function App(): ReactElement {
   return (
     <div className="flex grow gap-6 p-6">
       <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-6">

@@ -5,7 +5,7 @@ import globals from 'globals';
 export default defineConfig([
   {
     extends: [cbnConfig],
-    files: ['src/**/*.ts'],
+    files: ['src/**/*.{ts,tsx}'],
     ignores: ['**/cfgr-defs.generated.ts'],
     languageOptions: {
       globals: {

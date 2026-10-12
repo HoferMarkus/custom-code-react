@@ -1,4 +1,4 @@
-import { useCmpValue } from '../../hooks/use-value-changed';
+import { useCmpValue } from '../../hooks/use-cmp-value';
 import { CounterControl } from './counter-control';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 import { Checkbox, FormControlLabel } from '@mui/material';

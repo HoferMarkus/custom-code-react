@@ -1,4 +1,4 @@
-import { useCmpValue } from '../hooks/use-value-changed';
+import { useCmpValue } from '../hooks/use-cmp-value';
 import { Cnt1, Cnt2, Cnt3 } from '../typings/cfgr-defs.generated';
 
 export const Result = () => {

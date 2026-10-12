@@ -1,4 +1,4 @@
-import { useCmpValue } from '../../hooks/use-value-changed';
+import { useCmpValue } from '../../hooks/use-cmp-value';
 import { MinusIcon, PlusIcon } from '../../icons';
 import { CounterButton } from './counter-button';
 import { ValueComponent } from '@combeenation/custom-code-sdk';

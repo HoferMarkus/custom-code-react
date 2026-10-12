@@ -1,4 +1,4 @@
-import { useValueChanged } from '../../hooks/use-value-changed';
+import { useCmpValue } from '../../hooks/use-value-changed';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 import { JSX } from 'react/jsx-runtime';
 
@@ -8,7 +8,7 @@ type RectangleStackProps = {
 };
 
 export function RectangleStack({ component, colorClassName }: RectangleStackProps): JSX.Element {
-  const value = useValueChanged(component);
+  const value = useCmpValue(component, 0, '2d');
   const rectangleCount = Math.max(0, Math.floor(value));
 
   return (

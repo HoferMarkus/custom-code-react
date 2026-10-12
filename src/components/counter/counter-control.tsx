@@ -1,10 +1,10 @@
-import { useValueChanged } from '../../hooks/use-value-changed';
+import { useCmpValue } from '../../hooks/use-value-changed';
 import { MinusIcon, PlusIcon } from '../../icons';
 import { CounterButton } from './counter-button';
 import { ValueComponent } from '@combeenation/custom-code-sdk';
 
 export const CounterControl = ({ component }: { component: ValueComponent<string, number> }) => {
-  const count = useValueChanged(component);
+  const count = useCmpValue(component, 0, 'CounterControl');
 
   return (
     <div className="bg-primary-color border-secondary-color relative flex flex-col gap-4 rounded-xl border p-4">

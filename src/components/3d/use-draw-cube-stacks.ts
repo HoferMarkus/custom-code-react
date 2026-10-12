@@ -1,4 +1,4 @@
-import { useValueChanged } from '../../hooks/use-value-changed';
+import { useCmpValue } from '../../hooks/use-value-changed';
 import { Cnt1, Cnt2, Cnt3 } from '../../typings/cfgr-defs.generated';
 import { Color3, MeshBuilder, PBRMaterial, Viewer } from '@combeenation/3d-viewer';
 import { useEffect } from 'react';
@@ -41,9 +41,9 @@ function drawCubeStacks(viewer: Viewer, cubeCounts: number[]): void {
 }
 
 export function useDrawCubeStacks(viewer: Viewer | null): void {
-  const cnt1CubeCount = Math.max(0, Math.floor(useValueChanged(Cnt1)));
-  const cnt2CubeCount = Math.max(0, Math.floor(useValueChanged(Cnt2)));
-  const cnt3CubeCount = Math.max(0, Math.floor(useValueChanged(Cnt3)));
+  const cnt1CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt1, 0, '3d')));
+  const cnt2CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt2, 0, '3d')));
+  const cnt3CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt3, 0, '3d')));
 
   useEffect(() => {
     if (!viewer) {

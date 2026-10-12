@@ -1,11 +1,24 @@
 import { useCmpValue } from '../hooks/use-cmp-value';
-import { Cnt1, Cnt2, Cnt3 } from '../typings/cfgr-defs.generated';
+import { Result as ResultCmp } from '../typings/cfgr-defs.generated';
+import { Checkbox, FormControlLabel } from '@mui/material';
+import { useState } from 'react';
+
+const ResultValue = () => {
+  const result = useCmpValue(ResultCmp, 0, 'Result');
+
+  return <span className="text-x-large text-primary-font-color mt-22">{`= ${result}`}</span>;
+};
 
 export const Result = () => {
-  const cnt1 = useCmpValue(Cnt1, 0, 'Result');
-  const cnt2 = useCmpValue(Cnt2, 0, 'Result');
-  const cnt3 = useCmpValue(Cnt3, 0, 'Result');
-  const total = cnt1 + cnt2 + cnt3;
+  const [render, setRender] = useState(true);
 
-  return <span className="text-x-large text-primary-font-color mb-4 self-end">{`= ${total}`}</span>;
+  return (
+    <div className="flex flex-col">
+      <FormControlLabel
+        control={<Checkbox checked={render} onChange={() => setRender(!render)} />}
+        label={<span className="text-primary-font-color">Show</span>}
+      />
+      {render && <ResultValue />}
+    </div>
+  );
 };

@@ -215,6 +215,7 @@ export type Quote = {
   assetBundleName?: string;
   widgetAssetPath?: string;
   pdfAssetPath?: string;
+  leadPdfAssetPath?: string;
   assignee: string[];
   subject: string;
   projectId: string;
@@ -305,7 +306,7 @@ const $Type_QuoteTemplate: z.ZodType<QuoteTemplate> = z.object({items: $Type_001
 const $Type_003 = $Type_QuoteTemplate.array();
 const $Type_QuoteCustomFields: z.ZodType<QuoteCustomFields> = z.object({Lieferbedingungen: z.string().optional(), Angebot: z.string().optional()}).describe('{ "elementity" : true }');
 const $Type_QuoteRuleSetCustomFields: z.ZodType<QuoteRuleSetCustomFields> = z.object({Lieferbedingungen: $Type_QuoteRule.optional(), Angebot: $Type_QuoteRule.optional()}).describe('{ "elementity" : true }');
-const $Type_Quote: z.ZodType<Quote> = z.object({quoteHubName: z.string(), assetBundleName: z.string().optional(), widgetAssetPath: z.string().optional(), pdfAssetPath: z.string().optional(), assignee: z.string().array(), subject: z.string(), projectId: z.string(), currency: $Type_Currency, taxRule: $Type_QuoteTaxRule.optional(), globalTax: z.number().optional(), paymentDueDays: z.number().optional(), offerValidityDays: z.number().optional(), notes: z.string().optional(), contributionMarginRatioThreshold: z.number().optional(), customer: $Type_QuoteCustomer, company: $Type_QuoteCompany, shipping: $Type_QuoteCustomer.optional(), items: $Type_001, discounts: $Type_002.optional(), markups: $Type_002.optional(), rules: $Type_QuoteRuleSet.optional(), actionRules: $Type_QuoteActionRuleSet.optional(), templates: $Type_003.optional(), fields: $Type_QuoteCustomFields.optional(), fieldRules: $Type_QuoteRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
+const $Type_Quote: z.ZodType<Quote> = z.object({quoteHubName: z.string(), assetBundleName: z.string().optional(), widgetAssetPath: z.string().optional(), pdfAssetPath: z.string().optional(), leadPdfAssetPath: z.string().optional(), assignee: z.string().array(), subject: z.string(), projectId: z.string(), currency: $Type_Currency, taxRule: $Type_QuoteTaxRule.optional(), globalTax: z.number().optional(), paymentDueDays: z.number().optional(), offerValidityDays: z.number().optional(), notes: z.string().optional(), contributionMarginRatioThreshold: z.number().optional(), customer: $Type_QuoteCustomer, company: $Type_QuoteCompany, shipping: $Type_QuoteCustomer.optional(), items: $Type_001, discounts: $Type_002.optional(), markups: $Type_002.optional(), rules: $Type_QuoteRuleSet.optional(), actionRules: $Type_QuoteActionRuleSet.optional(), templates: $Type_003.optional(), fields: $Type_QuoteCustomFields.optional(), fieldRules: $Type_QuoteRuleSetCustomFields.optional()}).describe('{ "elementity" : true }');
 const $Type_TenantCustomFields: z.ZodType<TenantCustomFields> = z.object({Discount: z.string().optional(), F6: z.number().optional()}).describe('{ "elementity" : true }');
 const $Type_Tenant: z.ZodType<Tenant> = z.object({Name: z.string(), DisplayName: z.string(), Logo: z.string(), Fields: $Type_TenantCustomFields.optional()}).describe('{ "elementity" : true }');
 const $Type_UserCustomFields: z.ZodType<UserCustomFields> = z.object({F4: z.string().optional(), Discount: z.number().optional(), DiscountString: z.string().optional(), F5: z.number().array().optional()}).describe('{ "elementity" : true }');
@@ -321,6 +322,7 @@ const $Type_User: z.ZodType<User> = z.object({Id: z.string(), FirstName: z.strin
 export const Cnt3 = new ValueComponent<'Cnt3', number>('Cnt3', z.number());
 export const Cnt1 = new ValueComponent<'Cnt1', number>('Cnt1', z.number());
 export const Cnt2 = new ValueComponent<'Cnt2', number>('Cnt2', z.number());
+export const Result = new ValueComponent<'Result', number>('Result', z.number());
 
 /**
  * CONTROLS

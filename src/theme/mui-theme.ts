@@ -50,7 +50,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const muiTheme = createTheme({
+export const MUI_THEME = createTheme({
   palette: {
     primaryColor: 'var(--primary-color)',
     secondaryColor: 'var(--secondary-color)',

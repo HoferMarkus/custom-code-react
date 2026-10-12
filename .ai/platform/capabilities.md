@@ -147,6 +147,14 @@ Support status is **Needs verification** throughout because it has not been conf
 - **Status:** Needs verification
 - **Notes:** Not documented.
 
+## Coding conventions
+
+Apply in every project.
+
+- Module-level constants and `let`s: exported ones are `UPPER_SNAKE_CASE` (`CUBE_WIDTH`). Non-exported ones are `UPPER_SNAKE_CASE` with a `_` prefix (`_CUBE_GAP`).
+- Non-exported functions are prefixed with `_` (`_syncCubeAnchors`).
+- Components are never prefixed, whether exported or not. Hooks and generated files are exempt.
+
 ## Open questions
 
 - What does the second argument of `onValueChanged` do? — Platform team — Ask

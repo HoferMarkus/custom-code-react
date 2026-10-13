@@ -28,19 +28,39 @@ Support status is **Needs verification** throughout because it has not been conf
 
 ## Capability catalogue
 
+### Language and runtime
+
+- **Purpose:** Defines the language and runtime of custom code.
+- **Support status:** Needs verification
+- **Approved use cases:** TypeScript as ES modules, running in the browser.
+- **Constraints and limitations:** Compile target is ES2024 (`lib`: `ES2024`, `DOM`, `DOM.Iterable`). Type checking only (`noEmit`), the bundle is built by Vite.
+- **Configuration or prerequisites:** `tsconfig.json` extends `@combeenation/ts-config`.
+- **Security considerations:** Needs verification
+- **Recommended pattern:** Needs verification
+- **Authoritative documentation:** Needs verification
+- **Owner:** Needs verification
+- **Last verified:** Not verified
+
 ### Custom code entry point
 
 - **Purpose:** Runs project code once the configurator is ready.
 - **Support status:** Needs verification
-- **Approved use cases:** Initialisation and registering behaviour.
+- **Approved use cases:** Initialisation and registering behaviour. Exposing functions on the global `window.CbnCustomCode` object, for example for debugging in the browser console.
 - **Constraints and limitations:** The entry file is `src/index.ts`. It runs after the configurator's controls are created and rendered and the product plan is loaded.
 - **Configuration or prerequisites:** The build output must be a single ES module named `cfgr.js` with no extra chunks. Top-level await is supported.
 - **Security considerations:** Needs verification
 - **Recommended pattern:**
 
   ```ts
+  declare global {
+    interface Window {
+      CbnCustomCode: object;
+    }
+  }
+
   async function _initCfgr(): Promise<void> {
     // runs once the configurator is ready
+    window.CbnCustomCode = {};
   }
   _initCfgr();
   ```

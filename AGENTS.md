@@ -17,23 +17,14 @@ Help developers make correct, maintainable changes that fit this project's requi
 3. Review relevant specifications and accepted architecture decision records (ADRs), if present.
 4. Inspect the existing implementation and follow established project conventions before proposing a new pattern.
 
-## Platform and dependency rules
-
-- Prefer documented, organization-supported platform capabilities and libraries.
-- Do not invent APIs, configuration keys, supported versions, compatibility guarantees, or internal platform behavior.
-- If the platform description is silent, check the reference documentation listed in `.ai/system.md` before asking.
-- Distinguish verified facts from assumptions and recommendations.
-- If required information is missing or contradictory, state what is unknown and ask a focused question when it affects correctness, security, or architecture.
-- Check compatibility with the versions and conventions already used in this repository before proposing dependency changes.
-- Do not replace an approved library or introduce a new dependency without explaining why it is needed and its trade-offs.
-
 ## Implementation rules
 
 - Make the smallest change that adequately solves the task.
 - Preserve existing behavior unless the requested change requires otherwise.
 - Follow existing formatting, naming, error-handling, testing, and architectural conventions.
+- Check version compatibility with this repository before proposing dependency changes. Do not replace an approved library or add a new dependency without explaining why and the trade-offs.
 - Do not expose secrets, credentials, tokens, or personal data. Never add secrets to source control.
-- Do not silently change accepted requirements or architecture decisions.
+- Do not silently change accepted requirements or architecture decisions. Ask before making a consequential architectural change.
 - Do not claim tests, builds, or checks passed unless they were actually run and passed.
 
 ## Documentation and decisions

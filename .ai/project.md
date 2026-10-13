@@ -29,7 +29,6 @@ Not documented.
 
 ## Stack
 
-- **Language:** TypeScript, ES modules, target ES2024, running in the browser.
 - **UI framework:** React 19, rendered with `createRoot` inside `StrictMode` (`src/react-root.tsx`).
 - **UI components:** MUI with emotion. Only a few components are used, plus a custom `ThemeProvider` theme.
 - **Styling:** Tailwind CSS 4 utility classes. Colour and font tokens are CSS variables in `src/theme/styles.css`. `src/theme/mui-theme.ts` maps the MUI theme to the same variables.
@@ -41,7 +40,6 @@ There are no tests and none are planned.
 
 ## Structure and conventions
 
-- `src/index.ts` calls `renderReactRoot()`.
 - `src/components/` holds React components, grouped by feature (`2d/`, `3d/`, `counter/`).
 - `src/hooks/` holds shared hooks. Configurator values are read with `useCmpValue` (`src/hooks/use-cmp-value.ts`) rather than calling the SDK subscription directly. Feature-specific hooks sit next to their components (for example in `src/components/3d/`).
 - File names are kebab-case. Components are function components in `.tsx` files.

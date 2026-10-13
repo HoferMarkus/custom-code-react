@@ -1,6 +1,6 @@
 # Project context
 
-Project-specific information: the product and the coding specifics of this repository. Platform behaviour (SDK, 3D viewer, entry point) is described in `.ai/system/system.md` and must not be restated or changed here. Project terms are in `glossary.md` next to this file.
+Project-specific information: the product and the coding specifics of this repository. Platform behaviour (SDK, 3D viewer, entry point) is described in the `combeenation-cpq` skill (`references/knowledge.md`) and must not be restated or changed here. Project terms are in `glossary.md` next to this file.
 
 > Maintainer: markus.hofer@combeenation.com  
 > Last reviewed: 2026-10-12
@@ -59,7 +59,7 @@ There are no tests and none are planned.
 
 ## Documentation index
 
-- Platform description (read-only, identical in every project): `.ai/system/system.md`, `.ai/system/coding-guidelines.md` and `.ai/system/glossary.md`
+- Platform description (read-only, identical in every project): `knowledge.md` and `glossary.md` in the `combeenation-cpq` skill, `coding-guidelines.md` in the `apply-coding-guidelines` skill
 - Project glossary: `.ai/project/glossary.md`
 - No specifications or ADRs exist yet.
 

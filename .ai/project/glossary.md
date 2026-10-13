@@ -1,6 +1,6 @@
 # Project glossary
 
-Terms specific to this project. Platform terms (configurator, `ValueComponent`, `CustomControl` and so on) are in `.ai/system/glossary.md` and must not be repeated here.
+Terms specific to this project. Platform terms (configurator, `ValueComponent`, `CustomControl` and so on) are in the `glossary.md` of the `combeenation-cpq` skill and must not be repeated here.
 
 | Term           | Definition                                                                                                                                            |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |

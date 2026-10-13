@@ -4,7 +4,7 @@
 > Owner: Platform team  
 > Last verified: 2026-10-12
 
-This document describes the organization's developer platform: its capabilities and its approved third-party libraries. Coding rules live in `coding-guidelines.md`. Project-specific content (product, framework, libraries chosen by the project, conventions) belongs in `.ai/project/project.md`. Platform terms are defined in `glossary.md`. Do not treat an unfilled section as proof that a capability exists or is supported.
+This document describes the organization's developer platform: its capabilities and its approved third-party libraries. Coding rules live in `coding-guidelines.md` of the `apply-coding-guidelines` skill. Project-specific content (product, framework, libraries chosen by the project, conventions) belongs in `.ai/project/project.md`. Platform terms are defined in `glossary.md` next to this file. Do not treat an unfilled section as proof that a capability exists or is supported.
 
 ## How to use this document
 

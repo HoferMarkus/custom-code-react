@@ -1,6 +1,6 @@
 ---
 name: apply-coding-guidelines
-description: Audit the source code against the platform coding guidelines in `.ai/system/coding-guidelines.md` and fix the violations. Use when the user asks to check, enforce, apply or clean up coding conventions or naming, after generating or changing larger amounts of code, or when code may not follow the guidelines. Reports violations per file, applies behaviour-preserving fixes after confirmation and verifies with the project's lint and type check.
+description: Audit the source code against the platform coding guidelines in `references/coding-guidelines.md` and fix the violations. Use when the user asks to check, enforce, apply or clean up coding conventions or naming, after generating or changing larger amounts of code, or when code may not follow the guidelines. Reports violations per file, applies behaviour-preserving fixes after confirmation and verifies with the project's lint and type check.
 ---
 
 # Apply coding guidelines
@@ -9,7 +9,7 @@ Brings the project's source code in line with the platform coding guidelines wit
 
 ## Rules
 
-- `.ai/system/coding-guidelines.md` is the single source of truth. Read it at the start of every run. Never copy its rules into this skill, into `.ai/project/` or into code comments, and never edit anything in `.ai/system/`.
+- [references/coding-guidelines.md](references/coding-guidelines.md) is the single source of truth. Read it at the start of every run. Never copy its rules into this skill, into `.ai/project/` or into code comments, and never edit it in a project.
 - Do not weaken, override or disable lint rules, and do not edit the lint configuration to make violations disappear.
 - Skip generated files and anything the guidelines declare exempt.
 - Fix violations only. Do not refactor, reformat or fix unrelated issues.
@@ -19,7 +19,7 @@ Brings the project's source code in line with the platform coding guidelines wit
 
 ## Steps
 
-1. Read `.ai/system/coding-guidelines.md` and `.ai/project/project.md`. Derive a checklist of every rule that can be verified in code, not just the naming rules.
+1. Read [references/coding-guidelines.md](references/coding-guidelines.md) and `.ai/project/project.md`. Derive a checklist of every rule that can be verified in code, not just the naming rules.
 2. Find the project's lint and type-check commands (see `package.json` and `.ai/project/project.md`) and run them to record the baseline. If either fails before any change, report it and stop.
 3. Audit every source file, skipping generated files. For each rule in the checklist, list the violations per file with the current and the proposed name or form. Use grep for the candidates, then check each hit by reading the code. Do not rely on grep alone: a non-exported function may be a hook or a component and therefore exempt.
 4. Present the audit as a table per file: rule, symbol, proposed fix. Mention rules that the linter does not enforce, so the user knows which ones need this skill. Wait for confirmation. Offer to apply it per file or per rule.

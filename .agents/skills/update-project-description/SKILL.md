@@ -5,19 +5,19 @@ description: Update the project description in `.ai/project/` from the code base
 
 # Update project description
 
-Keeps `.ai/project/` (`project.md` and `glossary.md`) accurate. It is the only folder in `.ai/` the agent may edit.
+Keeps `.ai/project/` (`project.md` and `glossary.md`) accurate. It is the only place in the repository the agent maintains as project description.
 
 ## Rules
 
-- Edit only files in `.ai/project/`. Never edit anything in `.ai/system/`.
-- Do not restate platform behaviour, platform libraries, platform-wide coding rules or platform terms. Those belong in `.ai/system/`. Link to them instead.
+- Edit only files in `.ai/project/`. Never edit the reference files of the `combeenation-cpq` or `apply-coding-guidelines` skills.
+- Do not restate platform behaviour, platform libraries, platform-wide coding rules or platform terms. Those belong in the references of the `combeenation-cpq` and `apply-coding-guidelines` skills. Link to them instead.
 - Separate what the code proves from what only a person knows. Never present an inference as a confirmed decision.
 - Describe patterns and point to files. Do not copy code into the description.
 - Write changes only after the user has confirmed the proposal.
 
 ## Steps
 
-1. Read `.ai/project/` and `.ai/system/` (`system.md`, `coding-guidelines.md`, `glossary.md`).
+1. Read `.ai/project/` and the platform references: `knowledge.md` and `glossary.md` of the `combeenation-cpq` skill, `coding-guidelines.md` of the `apply-coding-guidelines` skill.
 2. Scan the repository for facts relevant to each section of `.ai/project/project.md` and to the terms in `.ai/project/glossary.md`:
    - **Stack and versions:** `package.json`, `tsconfig.json`, `vite.config.js`, `eslint.config.mjs`.
    - **Structure and conventions:** the `src/` folder layout, file naming, hooks and component patterns.
@@ -27,7 +27,7 @@ Keeps `.ai/project/` (`project.md` and `glossary.md`) accurate. It is the only f
    - **Added:** facts in the code that the description lacks.
    - **Changed:** statements that no longer match the code.
    - **Stale:** paths, scripts, names or components that no longer exist.
-   - **Platform content:** anything in `.ai/project/` that duplicates `.ai/system/`. Propose removing it.
+   - **Platform content:** anything in `.ai/project/` that duplicates the platform references. Propose removing it.
 4. Ask the user about what the code cannot show: purpose, scope and out of scope, reasons behind decisions, constraints without a trace in the code. Ask one focused question at a time. Put unanswered items under "Open questions".
 5. Present the proposal grouped as Added, Changed, Stale and Platform content, marking inferred items as such. Wait for confirmation.
 6. Apply the confirmed changes. Keep the existing section structure and style. Set "Last reviewed" to today's date.

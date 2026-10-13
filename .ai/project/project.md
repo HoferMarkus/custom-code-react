@@ -1,70 +1,48 @@
-# Project context
+# Project description
 
-Project-specific information: the product and the coding specifics of this repository. Platform behaviour (SDK, 3D viewer, entry point) is described in the `combeenation-cpq` skill (`references/knowledge.md`) and must not be restated or changed here. Project terms are in `glossary.md` next to this file.
+> Scope: This project only. Platform capabilities, approved libraries and coding rules are in the `combeenation-cpq` and `apply-coding-guidelines` skills. Do not restate them here.
+> Last reviewed: 2026-10-13
 
-> Maintainer: markus.hofer@combeenation.com  
-> Last reviewed: 2026-10-12
+## Product
 
-# Part 1: Product
-
-## Purpose
-
-Counter demo built as Combeenation custom code. A React UI is rendered into the `ReactRoot_cc` custom control. It shows four counter controls bound to the number components `Cnt1`, `Cnt2`, `Cnt3` and `Cnt4`, a `Result` value, a 2D view of rectangle stacks and a 3D view of cube stacks (one stack per counter).
-
-It is a demo project.
-
-## Scope
-
-### In scope
-
-- Rendering the React app into `ReactRoot_cc`.
-- Reading and writing the configurator components `Cnt1`, `Cnt2`, `Cnt3`, `Cnt4` and `Result`.
-- Visualising those values in 2D (DOM) and 3D.
-
-### Out of scope
-
-Not documented.
-
-# Part 2: Coding specifics
+- Demo configurator for Combeenation custom code, built as a React app.
+- Visualises four counter values (`Cnt1`–`Cnt4`) and their sum (`Result`) in a 2D rectangle view and a 3D cube view.
+- Linked to company `CBNHOF`, configurator `REACTPG` (`cbn.config.json`).
+- Demo only. It is never deployed to production.
 
 ## Stack
 
-- **UI framework:** React 19, rendered with `createRoot` inside `StrictMode` (`src/react-root.tsx`).
-- **UI components:** MUI with emotion. Only a few components are used, plus a custom `ThemeProvider` theme.
-- **Styling:** Tailwind CSS 4 utility classes. Colour and font tokens are CSS variables in `src/theme/styles.css`. `src/theme/mui-theme.ts` maps the MUI theme to the same variables.
-- Versions are in `package.json`. Check it before proposing a dependency change.
+- React 19, MUI 9 (Emotion), Tailwind 4 (`@tailwindcss/vite`), TypeScript 6, Vite 8. Versions are in `package.json`.
+- 3D rendering with `@combeenation/3d-viewer`.
+- CSS is injected into the single `cfgr.js` bundle (`vite-plugin-css-injected-by-js`).
+- ESLint covers `src/**/*.{ts,tsx}` and ignores `cfgr-defs.generated.ts` (`eslint.config.mjs`).
 
-## Testing
+## Architecture
 
-There are no tests and none are planned.
+- `src/index.ts` calls `renderReactRoot()` in `src/react-root.tsx`. It mounts `<App />` into the `ReactRoot_cc` custom control, wrapped in `StrictMode` and the MUI `ThemeProvider`.
+- `src/components/app.tsx` lays out the counters, `Result`, `View2D`, `View3D` and the restart button.
+- Each view subscribes to the counters itself through `src/hooks/use-cmp-value.ts`. There is no shared store.
+- 3D: `use-viewer-setup.ts` owns the viewer lifecycle, `use-draw-cube-stacks.ts` syncs cube meshes to the counter values, `use-cube-anchors.ts` provides HTML anchors that `view-3d.tsx` fills through portals, and `cube-layout.ts` holds the geometry.
 
-## Structure and conventions
+## Structure
 
-- `src/components/` holds React components, grouped by feature (`2d/`, `3d/`, `counter/`).
-- `src/hooks/` holds shared hooks. Configurator values are read with `useCmpValue` (`src/hooks/use-cmp-value.ts`) rather than calling the SDK subscription directly. Feature-specific hooks sit next to their components (for example in `src/components/3d/`).
-- File names are kebab-case. Components are function components in `.tsx` files.
-- The 3D view (`src/components/3d/`) is split by role:
-  - `use-viewer-setup.ts` creates and destroys the viewer.
-  - `use-draw-cube-stacks.ts` draws the cube meshes.
-  - `use-cube-anchors.ts` manages the HTML anchors.
-  - `screenshot-button.tsx` downloads a PNG of the scene from the current camera position via `cameraManager.createScreenshot`.
-  - `center-camera-button.tsx` re-centres the camera on the scene via `cameraManager.autofocusActiveCamera`. The camera is focused automatically only once per viewer, so later counter changes keep the user's view.
-  - `cube-layout.ts` holds the layout maths.
-- Every cube has an HTML anchor on its front face (viewer HTML anchor feature). `view-3d.tsx` renders the content of each anchor with `createPortal`, currently an info icon whose tooltip shows the cube index. This is a demo detail.
-- 3D names are index based: meshes are `counter-cube-<stack>-<cube>` and anchors `counter-cube-anchor-<stack>-<cube>`. Match mesh names with the strict pattern in `use-draw-cube-stacks.ts` so anchors are never mistaken for cubes.
+- `src/components/`: grouped by feature (`2d/`, `3d/`, `counter/`), shared components at the top level.
+- `src/hooks/`: hooks used across features.
+- `src/icons/`: SVGs in `svg/`, re-exported from `index.ts`.
+- `src/theme/`: `mui-theme.ts` and `styles.css`.
+- `src/typings/`: generated typings. Never edited by hand.
+
+## Conventions
+
+- kebab-case file names, one component or hook per file. Naming prefixes follow the platform coding guidelines.
+- Tailwind is used for layout and colours, MUI for interactive components (buttons, tooltips, checkboxes). This is intentional.
+- Colours are defined once as CSS variables in `styles.css`, exposed as Tailwind theme colours and mirrored in `mui-theme.ts`.
 
 ## Constraints
 
-- The SDK is installed from a local release-candidate tarball (`combeenation-custom-code-sdk-0.0.1-rc4-cmp-unsubscribe.tgz`). This is temporary: it will be replaced once a version is published, and a local build must not be used in production. Until then, `useCmpValue` relies on its unsubscribe support. Do not replace or upgrade it without asking.
-
-## Documentation index
-
-- Platform description (read-only, identical in every project): `knowledge.md` and `glossary.md` in the `combeenation-cpq` skill, `coding-guidelines.md` in the `apply-coding-guidelines` skill
-- Project glossary: `.ai/project/glossary.md`
-- No specifications or ADRs exist yet.
+- `@combeenation/custom-code-sdk` is a local tarball (`combeenation-custom-code-sdk-0.0.1-rc4-cmp-unsubscribe.tgz`). This is accepted because the project is demo only. `use-cmp-value.ts` depends on its `unsubscribe` support.
+- Dependency pinning (exact versus `^`) has no specific reason.
 
 ## Open questions
-
-Keep unresolved questions here until they are answered. Do not treat an assumption as an accepted requirement.
 
 None.

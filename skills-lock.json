@@ -1,11 +1,23 @@
 {
   "version": 1,
   "skills": {
+    "apply-coding-guidelines": {
+      "source": "combeenation/skills",
+      "sourceType": "github",
+      "skillPath": "skills/apply-coding-guidelines/SKILL.md",
+      "computedHash": "ec04cea0f4d0dd7001c0c93d236dbea4aeaf72b74d2787fdc80a6198d503554a"
+    },
     "combeenation-cpq": {
       "source": "combeenation/skills",
       "sourceType": "github",
       "skillPath": "skills/combeenation-cpq/SKILL.md",
-      "computedHash": "e0ecc00e9dd0c9d41a65d3a01703f8f1b2a57c4ff036c77a6d670490fca45b9e"
+      "computedHash": "91edd14a358042f8a7c7018da57ffc23249971faee5134120f047651f2cae265"
+    },
+    "update-project-description": {
+      "source": "combeenation/skills",
+      "sourceType": "github",
+      "skillPath": "skills/update-project-description/SKILL.md",
+      "computedHash": "50ddf823aacc711702ae4005ee9d18b692337101d9142f67acfb8a7aafa2dc08"
     }
   }
 }

@@ -1,13 +1,15 @@
 # Project glossary
 
-Terms specific to this project. Platform terms (configurator, `ValueComponent`, `CustomControl` and so on) are in the `glossary.md` of the `combeenation-cpq` skill and must not be repeated here.
+> Scope: This project only. Platform terms are in `glossary.md` of the `combeenation-cpq` skill.
+> Last reviewed: 2026-10-13
 
-| Term           | Definition                                                                                                                                            |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter        | One of the number components `Cnt1`, `Cnt2`, `Cnt3` and `Cnt4`, each with its own counter control in the UI.                                          |
-| Result         | The number component `Result`, shown next to the counters.                                                                                            |
-| Stack          | The visual column that belongs to one counter. Rectangles in 2D, cubes in 3D.                                                                         |
-| Cube           | One element of a 3D stack. Named `counter-cube-<stack>-<cube>`.                                                                                       |
-| Anchor         | An HTML anchor on the front face of a cube. Named `counter-cube-anchor-<stack>-<cube>`. Its content is rendered with `createPortal` in `view-3d.tsx`. |
-| `ReactRoot_cc` | The custom control the React app is rendered into.                                                                                                    |
-| Centre camera  | Button that re-centres the 3D camera on the scene. The camera is otherwise focused only once per viewer.                                              |
+| Term           | Definition                                                                                                      |
+| -------------- | --------------------------------------------------------------------------------------------------------------- |
+| `ReactRoot_cc` | The custom control the React app is mounted into (`react-root.tsx`).                                            |
+| `Cnt1`–`Cnt4`  | The four counter `ValueComponent<number>`s. Each is one stack in the 2D and 3D views.                           |
+| `Result`       | Read-only `ValueComponent<number>` shown next to the counters. Imported as `ResultCmp` in `result.tsx`.         |
+| `useCmpValue`  | Hook in `src/hooks/use-cmp-value.ts` that subscribes a component to React state and unsubscribes on cleanup.    |
+| `View2D`       | Rectangle stacks, one per counter (`src/components/2d/`).                                                       |
+| `View3D`       | 3D viewer with one cube stack per counter (`src/components/3d/`).                                               |
+| Cube stack     | The meshes `counter-cube-<stack>-<cube>` in the 3D scene, drawn by `use-draw-cube-stacks.ts`.                   |
+| Anchor         | HTML anchor mesh on a cube (`counter-cube-anchor-...`) that hosts a React portal with an info icon and tooltip. |

@@ -5,7 +5,7 @@ const _STACK_SPACING = 3;
 
 export function getCubeCenter(stackIndex: number, cubeIndex: number): { x: number; y: number } {
   return {
-    x: (stackIndex - 1) * _STACK_SPACING,
+    x: (stackIndex - 1.5) * _STACK_SPACING,
     y: cubeIndex * (CUBE_HEIGHT + _CUBE_GAP) + CUBE_HEIGHT / 2,
   };
 }

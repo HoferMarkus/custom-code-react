@@ -1,4 +1,4 @@
-import { Cnt1, Cnt2, Cnt3 } from '../../typings/cfgr-defs.generated';
+import { Cnt1, Cnt2, Cnt3, Cnt4 } from '../../typings/cfgr-defs.generated';
 import { RectangleStack } from './rectangle-stack';
 import { JSX } from 'react/jsx-runtime';
 
@@ -7,6 +7,7 @@ export function View2D(): JSX.Element {
     { component: Cnt1, colorClassName: 'bg-primary-color' },
     { component: Cnt2, colorClassName: 'bg-secondary-color' },
     { component: Cnt3, colorClassName: 'bg-light-red-color' },
+    { component: Cnt4, colorClassName: 'bg-medium-grey-color' },
   ];
 
   return (

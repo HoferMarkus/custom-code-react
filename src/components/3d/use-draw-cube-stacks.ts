@@ -1,11 +1,11 @@
 import { useCmpValue } from '../../hooks/use-cmp-value';
-import { Cnt1, Cnt2, Cnt3 } from '../../typings/cfgr-defs.generated';
+import { Cnt1, Cnt2, Cnt3, Cnt4 } from '../../typings/cfgr-defs.generated';
 import { CUBE_HEIGHT, CUBE_WIDTH, getCubeCenter } from './cube-layout';
 import { CubeAnchor, useCubeAnchors } from './use-cube-anchors';
 import { Color3, MeshBuilder, PBRMaterial, Viewer } from '@combeenation/3d-viewer';
 import { useEffect, useMemo, useRef } from 'react';
 
-const _CUBE_COLORS = ['#ffd119', '#677752', '#e07f76'];
+const _CUBE_COLORS = ['#ffd119', '#677752', '#e07f76', '#636d70'];
 // Strict pattern so html anchor meshes (`counter-cube-anchor-...`) are never matched.
 const _CUBE_MESH_NAME_PATTERN = /^counter-cube-\d+-\d+$/;
 
@@ -67,9 +67,10 @@ export function useDrawCubeStacks(viewer: Viewer | null): CubeAnchor[] {
   const cnt1CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt1, 0, '3d')));
   const cnt2CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt2, 0, '3d')));
   const cnt3CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt3, 0, '3d')));
+  const cnt4CubeCount = Math.max(0, Math.floor(useCmpValue(Cnt4, 0, '3d')));
   const cubeCounts = useMemo(
-    () => [cnt1CubeCount, cnt2CubeCount, cnt3CubeCount],
-    [cnt1CubeCount, cnt2CubeCount, cnt3CubeCount]
+    () => [cnt1CubeCount, cnt2CubeCount, cnt3CubeCount, cnt4CubeCount],
+    [cnt1CubeCount, cnt2CubeCount, cnt3CubeCount, cnt4CubeCount]
   );
 
   const focusedViewerRef = useRef<Viewer | null>(null);

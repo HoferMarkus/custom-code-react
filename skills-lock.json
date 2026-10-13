@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "combeenation-cpq": {
+      "source": "combeenation/skills",
+      "sourceType": "github",
+      "skillPath": "skills/combeenation-cpq/SKILL.md",
+      "computedHash": "e0ecc00e9dd0c9d41a65d3a01703f8f1b2a57c4ff036c77a6d670490fca45b9e"
+    }
+  }
+}

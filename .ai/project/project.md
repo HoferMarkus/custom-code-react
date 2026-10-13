@@ -9,7 +9,7 @@ Project-specific information: the product and the coding specifics of this repos
 
 ## Purpose
 
-Counter demo built as Combeenation custom code. A React UI is rendered into the `ReactRoot_cc` custom control. It shows three counter controls bound to the number components `Cnt1`, `Cnt2` and `Cnt3`, a `Result` value, a 2D view of rectangle stacks and a 3D view of cube stacks (one stack per counter).
+Counter demo built as Combeenation custom code. A React UI is rendered into the `ReactRoot_cc` custom control. It shows four counter controls bound to the number components `Cnt1`, `Cnt2`, `Cnt3` and `Cnt4`, a `Result` value, a 2D view of rectangle stacks and a 3D view of cube stacks (one stack per counter).
 
 It is a demo project.
 
@@ -18,7 +18,7 @@ It is a demo project.
 ### In scope
 
 - Rendering the React app into `ReactRoot_cc`.
-- Reading and writing the configurator components `Cnt1`, `Cnt2`, `Cnt3` and `Result`.
+- Reading and writing the configurator components `Cnt1`, `Cnt2`, `Cnt3`, `Cnt4` and `Result`.
 - Visualising those values in 2D (DOM) and 3D.
 
 ### Out of scope

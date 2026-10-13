@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "combeenation-api-token",
+      "description": "Combeenation API Key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "cbn-mcp": {
+      "url": "https://127.0.0.1/mcp",
+      "type": "http",
+      "headers": {
+        "Authorization": "Bearer ${input:combeenation-api-token}"
+      }
+    }
+  }
+}

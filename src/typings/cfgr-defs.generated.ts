@@ -322,6 +322,7 @@ const $Type_User: z.ZodType<User> = z.object({Id: z.string(), FirstName: z.strin
 export const Cnt3 = new ValueComponent<'Cnt3', number>('Cnt3', z.number());
 export const Cnt1 = new ValueComponent<'Cnt1', number>('Cnt1', z.number());
 export const Cnt2 = new ValueComponent<'Cnt2', number>('Cnt2', z.number());
+export const Cnt4 = new ValueComponent<'Cnt4', number>('Cnt4', z.number());
 export const Result = new ValueComponent<'Result', number>('Result', z.number());
 
 /**

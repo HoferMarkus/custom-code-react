@@ -1,4 +1,4 @@
-import { Cnt1, Cnt2, Cnt3 } from '../typings/cfgr-defs.generated';
+import { Cnt1, Cnt2, Cnt3, Cnt4 } from '../typings/cfgr-defs.generated';
 import { View2D } from './2d/view-2d';
 import { View3D } from './3d/view-3d';
 import { CounterControlStack } from './counter/counter-control-stack';
@@ -14,6 +14,7 @@ export function App(): ReactElement {
           <CounterControlStack component={Cnt1} />
           <CounterControlStack component={Cnt2} />
           <CounterControlStack component={Cnt3} />
+          <CounterControlStack component={Cnt4} />
           <Result />
         </div>
 

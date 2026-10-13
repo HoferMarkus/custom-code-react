@@ -4,7 +4,7 @@ Terms specific to this project. Platform terms (configurator, `ValueComponent`, 
 
 | Term           | Definition                                                                                                                                            |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Counter        | One of the number components `Cnt1`, `Cnt2` and `Cnt3`, each with its own counter control in the UI.                                                  |
+| Counter        | One of the number components `Cnt1`, `Cnt2`, `Cnt3` and `Cnt4`, each with its own counter control in the UI.                                          |
 | Result         | The number component `Result`, shown next to the counters.                                                                                            |
 | Stack          | The visual column that belongs to one counter. Rectangles in 2D, cubes in 3D.                                                                         |
 | Cube           | One element of a 3D stack. Named `counter-cube-<stack>-<cube>`.                                                                                       |

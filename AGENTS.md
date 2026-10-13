@@ -6,14 +6,14 @@ Help developers make correct, maintainable changes that fit this project's requi
 
 ## Documentation layout
 
-- **Platform description (read-only):** `.ai/system.md` and `.ai/coding-guidelines.md`. They are identical in every project and describe the platform (the Combeenation SDK, the 3D viewer, the entry point and approved libraries) and its coding rules, including the ESLint rules. Never edit, adapt or extend them.
-- **Project description (editable):** `.ai/project.md`. It covers the product and the coding specifics of this project, such as the React stack, conventions and commands. It is the only file in `.ai/` the agent may adjust. To sync it with the code base, use the `update-project-description` skill.
+- **Platform description (read-only):** `.ai/system/` (`system.md`, `coding-guidelines.md`, `glossary.md`). They are identical in every project and describe the platform (the Combeenation SDK, the 3D viewer, the entry point and approved libraries), its coding rules, including the ESLint rules, and its terms. Never edit, adapt or extend them.
+- **Project description (editable):** `.ai/project/` (`project.md`, `glossary.md`). It covers the product and the coding specifics of this project, such as the React stack, conventions, commands and terms. The agent may adjust every file in this folder and nothing else in `.ai/`. To sync it with the code base, use the `update-project-description` skill.
 - If the two disagree about platform behaviour, the platform description wins. Flag the conflict instead of resolving it silently.
 
 ## Before making changes
 
-1. Read `.ai/project.md` for the product and the project's coding conventions.
-2. Consult the platform description (`.ai/system.md` and `.ai/coding-guidelines.md`) for platform, library and coding decisions.
+1. Read `.ai/project/project.md` for the product and the project's coding conventions, and `.ai/project/glossary.md` for the project's terms.
+2. Consult the platform description (`.ai/system/`) for platform, library, coding and terminology decisions.
 3. Review relevant specifications and accepted architecture decision records (ADRs), if present.
 4. Inspect the existing implementation and follow established project conventions before proposing a new pattern.
 
@@ -30,10 +30,10 @@ Help developers make correct, maintainable changes that fit this project's requi
 ## Documentation and decisions
 
 - Update relevant documentation when behavior, configuration, setup, or architectural decisions change.
-- After each major feature change, run the `update-project-description` skill so `.ai/project.md` stays in sync with the code.
+- After each major feature change, run the `update-project-description` skill so `.ai/project/` stays in sync with the code.
 - Record important architecture decisions in the project's established ADR format, if one exists.
 - Keep proposals and assumptions separate from accepted decisions.
-- Do not modify `.ai/system.md` or `.ai/coding-guidelines.md`, and do not claim an undocumented platform capability is supported without evidence.
+- Do not modify anything in `.ai/system/`, and do not claim an undocumented platform capability is supported without evidence.
 
 ## Validation and response
 

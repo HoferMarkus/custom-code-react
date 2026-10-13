@@ -1,6 +1,6 @@
 # Project context
 
-Project-specific information: the product and the coding specifics of this repository. Platform behaviour (SDK, 3D viewer, entry point) is described in `.ai/system.md` and must not be restated or changed here.
+Project-specific information: the product and the coding specifics of this repository. Platform behaviour (SDK, 3D viewer, entry point) is described in `.ai/system/system.md` and must not be restated or changed here. Project terms are in `glossary.md` next to this file.
 
 > Maintainer: markus.hofer@combeenation.com  
 > Last reviewed: 2026-10-12
@@ -59,8 +59,9 @@ There are no tests and none are planned.
 
 ## Documentation index
 
-- Platform description (read-only, identical in every project): `.ai/system.md` and `.ai/coding-guidelines.md`
-- No specifications, ADRs or glossary exist yet.
+- Platform description (read-only, identical in every project): `.ai/system/system.md`, `.ai/system/coding-guidelines.md` and `.ai/system/glossary.md`
+- Project glossary: `.ai/project/glossary.md`
+- No specifications or ADRs exist yet.
 
 ## Open questions
 
